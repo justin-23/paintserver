@@ -20,9 +20,9 @@ class AuthService {
   logout() {
     localStorage.removeItem("user");
   }
-  register(username, email, password) {
+  register(, email, password) {
     return axios.post(API_URL + "signup", {
-      username,
+      ,
       email,
       password
     });
@@ -36,6 +36,9 @@ class AuthService {
     return axios
       .post(API_URL + "clock", {
         id, isin,
+      })
+      .then(response => {
+        
       })
   }
 }

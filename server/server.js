@@ -39,7 +39,7 @@ const AuthDB = {
 
     getAccountByName: function(name, callback) {
         
-        AuthDB.connection.query(`SELECT * FROM accounts WHERE username = ?`, [name], function(err, res) {
+        AuthDB.connection.query(`SELECT * FROM accounts WHERE  = ?`, [name], function(err, res) {
             console.log("Check if name exists:", res, res && res.length > 0);
             return callback(res && res.length > 0, false || res[0]);
         });
@@ -89,7 +89,7 @@ const AuthDB = {
         bcrypt.hash(password, 10 /* saltRounds */, function(err, hash) {
             // Store hash in your password AuthDB.
             AuthDB.connection.query(
-                `INSERT INTO accounts (username, email, isadmin, hash) VALUES (?, ?, ?, ?);`, [name, email, 0, hash], function(err, res) {
+                `INSERT INTO accounts (, email, isadmin, hash) VALUES (?, ?, ?, ?);`, [name, email, 0, hash], function(err, res) {
                     if (err) {
                         callback(err, false);
                     } else {
@@ -188,12 +188,12 @@ app.post('/auth/login', (req, res) => {
         // Login success
         // https://www.youtube.com/watch?v=j4Tob0KAuthDBuQ&t=2258s
             console.log(sqlres);
-            const {username, isadmin} = sqlres;
-            const claims = { username, isadmin };
+            const {, isadmin} = sqlres;
+            const claims = { , isadmin };
             const accessToken = sign(claims, SECRET_GUID);
             res.status(200).json({
                 accessToken,
-                username,
+                ,
                 email,
                 isadmin,
             })
@@ -210,7 +210,7 @@ app.post('/clock', (req, res) => {
 })
 
 app.post('/auth/newuser', (req, res) => {
-    const name = req.body.username;
+    const name = req.body.;
     const email = req.body.email;
     const password = req.body.password;
     const confirm = req.body.confirm;

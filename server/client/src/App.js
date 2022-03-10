@@ -18,12 +18,12 @@ state = {
     const user = AuthService.getCurrentUser();
     
     if (user) {
-      const { isadmin, username } = user;
+      const { isadmin,  } = user;
         console.log(user);
         this.setState({
             isLoggedIn: true,
             isadmin,
-            username,
+            ,
         })
     }
 
@@ -48,14 +48,14 @@ state = {
 
     updateLogin = updateLogin.bind(this);
 
-    const { isLoggedIn, isadmin, username } = this.state;
+    const { isLoggedIn, isadmin,  } = this.state;
     return (
       <div className="App">
         
         <div className="newuser">
           <form id="newuser_form" action="/auth/newuser" method="post">
-            <label for="username"></label>
-            <input type="text" name="username" placeholder="Username" id="username" required />
+            <label for=""></label>
+            <input type="text" name="" placeholder="" id="" required />
 				      <label for="password">
 					    <i className="fas fa-lock"></i>				</label>
               <input type="text" name="email" placeholder="Email" id="email" required />
@@ -68,7 +68,7 @@ state = {
           <Logout></Logout>
           <>
             { isLoggedIn && (
-              <h1>Hello, { username} </h1>
+              <h1>Hello, { } </h1>
             )}
 
             { isLoggedIn && isadmin && (
